@@ -15,7 +15,7 @@ class MessageSignature {
 
     static String generate(String bodyAsString, long timestamp, String secret) throws MessageSignatureGenerationException{
         try {
-            String prehash = String.valueOf(timestamp) + GET + REQUEST_PATH + bodyAsString;
+            String prehash = timestamp + GET + REQUEST_PATH + bodyAsString;
             byte[] secretBytes = Base64.getDecoder().decode(secret);
             Mac hmac = Mac.getInstance(HMAC_SHA256_ALGO);
             SecretKeySpec keySpec = new SecretKeySpec(secretBytes, HMAC_SHA256_ALGO);

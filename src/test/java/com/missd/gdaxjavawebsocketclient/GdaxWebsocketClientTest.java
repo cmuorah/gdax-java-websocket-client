@@ -36,7 +36,7 @@ public class GdaxWebsocketClientTest extends GdaxClientTest {
 
     private GdaxWebsocketClient gdaxWebsocketClient;
 
-    private Map<MessageType, GdaxMessageHandler> messageHandlers;
+    private Map<MessageType, GdaxMessageHandler<?>> messageHandlers;
 
     @Before
     public void setUp() throws Exception {

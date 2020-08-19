@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class GdaxErrorMessageHandler implements GdaxMessageHandler<ErrorMessage> {
 
-    private static Logger logger = LoggerFactory.getLogger(GdaxErrorMessageHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(GdaxErrorMessageHandler.class);
 
     @Override
     public void handleMessage(ErrorMessage message) {

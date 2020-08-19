@@ -80,7 +80,7 @@ public final class Activate {
                 new BigDecimal(asMap.get(SIZE).toString()),
                 new BigDecimal(asMap.get(FUNDS).toString()),
                 new BigDecimal(asMap.get(TAKER_FEE_RATE).toString()),
-                Boolean.valueOf(asMap.get(PRIVATE).toString())
+                Boolean.parseBoolean(asMap.get(PRIVATE).toString())
         );
     }
 

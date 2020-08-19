@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+//    id "net.ltgt.errorprone" version "1.2.1"
 }
 
 group 'com.missd'
@@ -16,6 +17,7 @@ ext {
 }
 
 dependencies {
+    implementation group: 'net.openhft', name: 'chronicle-queue', version: '5.20.3'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:springBootVersion
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: springBootVersion
@@ -24,4 +26,5 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     testImplementation 'pl.pragmatists:JUnitParams:1.1.1'
     testImplementation("org.assertj:assertj-core:3.10.0")
+
 }

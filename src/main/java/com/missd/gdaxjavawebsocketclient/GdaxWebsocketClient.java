@@ -31,7 +31,7 @@ import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.TYPE;
 public class GdaxWebsocketClient {
 
     private static Logger logger = LoggerFactory.getLogger(GdaxWebsocketClient.class);
-    private final Map<MessageType, GdaxMessageHandler> messageHandlers;
+    private final Map<MessageType, GdaxMessageHandler<?>> messageHandlers;
     private final AuthAttributes authAttributes;
     private final Clock clock;
     private final ObjectReader objectReader;
@@ -39,7 +39,7 @@ public class GdaxWebsocketClient {
 
     private Session webSocketSession;
 
-    public GdaxWebsocketClient(Map<MessageType, GdaxMessageHandler> messageHandlers, AuthAttributes authAttributes, Clock clock) {
+    public GdaxWebsocketClient(Map<MessageType, GdaxMessageHandler<?>> messageHandlers, AuthAttributes authAttributes, Clock clock) {
         this.messageHandlers = messageHandlers;
         this.authAttributes = authAttributes;
         this.clock = clock;
