@@ -17,7 +17,7 @@ public class MessageSignatureTest extends GdaxClientTest {
         String expectedResult = "2SDqozh+oOpnQXkufsS6sMxIzuHjJXNnTL3Wx96ch0I=";
 
         //when
-        String result = MessageSignature.generate("", timestamp, TEST_SECRET);
+        String result = MessageSignature.generate(timestamp, TEST_SECRET);
 
         //then
         assertThat(result).isEqualTo(expectedResult);

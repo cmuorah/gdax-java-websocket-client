@@ -140,7 +140,7 @@ public class GdaxWebsocketClientTest extends GdaxClientTest {
                 .forProductIds("PRODUCT-ID-1", "PRODUCT-ID-2")
                 .forChannels(ChannelName.heartbeat);
         long timestamp = Instant.now().getEpochSecond();
-        String signature = MessageSignature.generate("", timestamp, TEST_SECRET);
+        String signature = MessageSignature.generate(timestamp, TEST_SECRET);
         subscription.sign(signature, TEST_PASSPHRASE, TEST_KEY);
         return subscription;
     }

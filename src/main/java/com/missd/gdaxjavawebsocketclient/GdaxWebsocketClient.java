@@ -59,7 +59,7 @@ public class GdaxWebsocketClient {
 
     private String signedMessage(Subscription subscription) throws MessageSignatureGenerationException {
         long signatureTimestamp = Instant.now(clock).getEpochSecond();
-        String signature = MessageSignature.generate("", signatureTimestamp, authAttributes.getSecret());
+        String signature = MessageSignature.generate(signatureTimestamp, authAttributes.getSecret());
         subscription.updateTimestamp(signatureTimestamp);
         subscription.sign(signature, authAttributes.getPassphrase(), authAttributes.getKey());
         return messageAsString(subscription);
