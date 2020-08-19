@@ -30,7 +30,7 @@ import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.TYPE;
 @ClientEndpoint
 public class GdaxWebsocketClient {
 
-    private static Logger logger = LoggerFactory.getLogger(GdaxWebsocketClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(GdaxWebsocketClient.class);
     private final Map<MessageType, GdaxMessageHandler<?>> messageHandlers;
     private final AuthAttributes authAttributes;
     private final Clock clock;
