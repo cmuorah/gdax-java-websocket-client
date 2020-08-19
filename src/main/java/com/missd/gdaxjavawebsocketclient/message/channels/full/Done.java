@@ -1,8 +1,6 @@
 package com.missd.gdaxjavawebsocketclient.message.channels.full;
 
 import com.missd.gdaxjavawebsocketclient.message.channels.Side;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -92,27 +90,5 @@ public final class Done extends OrderUpdate {
         return sb.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
 
-        if (!(o instanceof Done)) return false;
-
-        Done done = (Done) o;
-
-        return new EqualsBuilder()
-                .append(price, done.price)
-                .append(remainingSize, done.remainingSize)
-                .append(reason, done.reason)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(price)
-                .append(remainingSize)
-                .append(reason)
-                .toHashCode();
-    }
 }

@@ -2,13 +2,14 @@ package com.missd.gdaxjavawebsocketclient.message.channels.full;
 
 
 import com.missd.gdaxjavawebsocketclient.message.channels.Side;
+import net.openhft.chronicle.wire.SelfDescribingMarshallable;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class OrderUpdate {
+public abstract class OrderUpdate extends SelfDescribingMarshallable {
     protected final Instant time;
     protected final String productId;
     protected final long sequence;

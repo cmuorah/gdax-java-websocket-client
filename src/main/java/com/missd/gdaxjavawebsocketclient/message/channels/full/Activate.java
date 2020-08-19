@@ -1,8 +1,7 @@
 package com.missd.gdaxjavawebsocketclient.message.channels.full;
 
 import com.missd.gdaxjavawebsocketclient.message.channels.Side;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import net.openhft.chronicle.wire.SelfDescribingMarshallable;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -38,7 +37,7 @@ import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.USER_ID;
  *   "private": true
  * }
  */
-public final class Activate {
+public final class Activate extends SelfDescribingMarshallable {
     private final String productId;
     private final double timestamp;
     private final long userId;
@@ -151,45 +150,5 @@ public final class Activate {
         return sb.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
 
-        if (!(o instanceof Activate)) return false;
-
-        Activate activate = (Activate) o;
-
-        return new EqualsBuilder()
-                .append(timestamp, activate.timestamp)
-                .append(userId, activate.userId)
-                .append(priv, activate.priv)
-                .append(productId, activate.productId)
-                .append(profileId, activate.profileId)
-                .append(orderId, activate.orderId)
-                .append(stop_type, activate.stop_type)
-                .append(side, activate.side)
-                .append(stopPrice, activate.stopPrice)
-                .append(size, activate.size)
-                .append(funds, activate.funds)
-                .append(takerFeeRate, activate.takerFeeRate)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(productId)
-                .append(timestamp)
-                .append(userId)
-                .append(profileId)
-                .append(orderId)
-                .append(stop_type)
-                .append(side)
-                .append(stopPrice)
-                .append(size)
-                .append(funds)
-                .append(takerFeeRate)
-                .append(priv)
-                .toHashCode();
-    }
 }

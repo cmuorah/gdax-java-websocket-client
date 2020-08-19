@@ -1,8 +1,8 @@
 package com.missd.gdaxjavawebsocketclient.message;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import net.openhft.chronicle.wire.SelfDescribingMarshallable;
+
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.CHANNELS;
  * }
  *
  */
-public final class Subscription {
+public final class Subscription extends SelfDescribingMarshallable {
     private final MessageType type;
     private final List<String> product_ids;
     private final List<Channel> channels;
@@ -145,40 +145,4 @@ public final class Subscription {
         Subscription forChannels(ChannelName... channels);
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Subscription{");
-        sb.append("type=").append(type);
-        sb.append(", product_ids=").append(product_ids);
-        sb.append(", channels=").append(channels);
-        sb.append(", timestamp=").append(timestamp);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Subscription)) return false;
-
-        Subscription that = (Subscription) o;
-
-        return new EqualsBuilder()
-                .append(timestamp, that.timestamp)
-                .append(type, that.type)
-                .append(product_ids, that.product_ids)
-                .append(channels, that.channels)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(type)
-                .append(product_ids)
-                .append(channels)
-                .append(timestamp)
-                .toHashCode();
-    }
 }

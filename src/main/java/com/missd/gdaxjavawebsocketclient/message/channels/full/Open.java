@@ -1,8 +1,6 @@
 package com.missd.gdaxjavawebsocketclient.message.channels.full;
 
 import com.missd.gdaxjavawebsocketclient.message.channels.Side;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -63,41 +61,4 @@ public final class Open extends OrderUpdate {
         return remainingSize;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Open{");
-        sb.append("price=").append(price);
-        sb.append(", remainingSize=").append(remainingSize);
-        sb.append(", time=").append(time);
-        sb.append(", productId='").append(productId).append('\'');
-        sb.append(", sequence=").append(sequence);
-        sb.append(", orderId=").append(orderId);
-        sb.append(", side=").append(side);
-        sb.append(", userId='").append(userId).append('\'');
-        sb.append(", profileId='").append(profileId).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Open)) return false;
-
-        Open open = (Open) o;
-
-        return new EqualsBuilder()
-                .append(price, open.price)
-                .append(remainingSize, open.remainingSize)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(price)
-                .append(remainingSize)
-                .toHashCode();
-    }
 }

@@ -1,7 +1,7 @@
 package com.missd.gdaxjavawebsocketclient.message.channels;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import net.openhft.chronicle.wire.SelfDescribingMarshallable;
 
 import java.time.Instant;
 import java.util.Map;
@@ -20,7 +20,7 @@ import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.TIME;
  *   "time": "2018-07-30T17:45:44.381000Z"
  *  }
  */
-public final class Heartbeat {
+public final class Heartbeat extends SelfDescribingMarshallable {
     private final int lastTradeId;
     private final String productId;
     private final long sequence;
@@ -58,40 +58,5 @@ public final class Heartbeat {
         return time;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
 
-        if (!(o instanceof Heartbeat)) return false;
-
-        Heartbeat heartbeat = (Heartbeat) o;
-
-        return new EqualsBuilder()
-                .append(lastTradeId, heartbeat.lastTradeId)
-                .append(sequence, heartbeat.sequence)
-                .append(productId, heartbeat.productId)
-                .append(time, heartbeat.time)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(lastTradeId)
-                .append(productId)
-                .append(sequence)
-                .append(time)
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Heartbeat{");
-        sb.append("lastTradeId=").append(lastTradeId);
-        sb.append(", productId='").append(productId).append('\'');
-        sb.append(", sequence=").append(sequence);
-        sb.append(", time=").append(time);
-        sb.append('}');
-        return sb.toString();
-    }
 }

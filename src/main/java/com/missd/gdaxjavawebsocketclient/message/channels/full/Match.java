@@ -1,8 +1,7 @@
 package com.missd.gdaxjavawebsocketclient.message.channels.full;
 
 import com.missd.gdaxjavawebsocketclient.message.channels.Side;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import net.openhft.chronicle.wire.SelfDescribingMarshallable;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -33,7 +32,7 @@ import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.TRADE_ID;
  *     "side": "sell"
  * }
  */
-public final class Match {
+public final class Match extends SelfDescribingMarshallable {
     private final long tradeId;
     private final long sequence;
     private final UUID makerOrderId;
@@ -106,55 +105,4 @@ public final class Match {
         return side;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Match{");
-        sb.append("tradeId=").append(tradeId);
-        sb.append(", sequence=").append(sequence);
-        sb.append(", makerOrderId=").append(makerOrderId);
-        sb.append(", takerOrderId=").append(takerOrderId);
-        sb.append(", time=").append(time);
-        sb.append(", productId='").append(productId).append('\'');
-        sb.append(", size=").append(size);
-        sb.append(", price=").append(price);
-        sb.append(", side=").append(side);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Match)) return false;
-
-        Match match = (Match) o;
-
-        return new EqualsBuilder()
-                .append(tradeId, match.tradeId)
-                .append(sequence, match.sequence)
-                .append(makerOrderId, match.makerOrderId)
-                .append(takerOrderId, match.takerOrderId)
-                .append(time, match.time)
-                .append(productId, match.productId)
-                .append(size, match.size)
-                .append(price, match.price)
-                .append(side, match.side)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(tradeId)
-                .append(sequence)
-                .append(makerOrderId)
-                .append(takerOrderId)
-                .append(time)
-                .append(productId)
-                .append(size)
-                .append(price)
-                .append(side)
-                .toHashCode();
-    }
 }

@@ -1,38 +1,28 @@
 package com.missd.gdaxjavawebsocketclient.message.channels;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import net.openhft.chronicle.wire.SelfDescribingMarshallable;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.BEST_ASK;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.BEST_BID;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.HIGH_24_H;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.LOW_24_H;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.OPEN_24_H;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.PRICE;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.PRODUCT_ID;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.SEQUENCE;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.VOLUME_24_H;
-import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.VOLUME_30_D;
+import static com.missd.gdaxjavawebsocketclient.MessageAsMapKeys.*;
 
 /**
  * {
- *   "type": "ticker",
- *   "sequence": 3213383,
- *   "product_id": "ETH-USD",
- *   "price": "666.10000000",
- *   "open_24h": "511.01000000",
- *   "volume_24h": "7464.43543717",
- *   "low_24h": "505.33000000",
- *   "high_24h": "666.10000000",
- *   "volume_30d": "345657.51947284",
- *   "best_bid": "505.33",
- *   "best_ask": "666.1"
+ * "type": "ticker",
+ * "sequence": 3213383,
+ * "product_id": "ETH-USD",
+ * "price": "666.10000000",
+ * "open_24h": "511.01000000",
+ * "volume_24h": "7464.43543717",
+ * "low_24h": "505.33000000",
+ * "high_24h": "666.10000000",
+ * "volume_30d": "345657.51947284",
+ * "best_bid": "505.33",
+ * "best_ask": "666.1"
  * }
  */
-public final class Ticker {
+public final class Ticker extends SelfDescribingMarshallable {
     private final long sequence;
     private final String productId;
     private final BigDecimal price;
@@ -110,60 +100,5 @@ public final class Ticker {
 
     public BigDecimal getBest_ask() {
         return best_ask;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof Ticker)) return false;
-
-        Ticker ticker = (Ticker) o;
-
-        return new EqualsBuilder()
-                .append(sequence, ticker.sequence)
-                .append(productId, ticker.productId)
-                .append(price, ticker.price)
-                .append(open_24h, ticker.open_24h)
-                .append(volume_24h, ticker.volume_24h)
-                .append(low_24h, ticker.low_24h)
-                .append(high_24h, ticker.high_24h)
-                .append(volume_30d, ticker.volume_30d)
-                .append(best_bid, ticker.best_bid)
-                .append(best_ask, ticker.best_ask)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(sequence)
-                .append(productId)
-                .append(price)
-                .append(open_24h)
-                .append(volume_24h)
-                .append(low_24h)
-                .append(high_24h)
-                .append(volume_30d)
-                .append(best_bid)
-                .append(best_ask)
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Ticker{");
-        sb.append("sequence=").append(sequence);
-        sb.append(", productId='").append(productId).append('\'');
-        sb.append(", price=").append(price);
-        sb.append(", open_24h=").append(open_24h);
-        sb.append(", volume_24h=").append(volume_24h);
-        sb.append(", low_24h=").append(low_24h);
-        sb.append(", high_24h=").append(high_24h);
-        sb.append(", volume_30d=").append(volume_30d);
-        sb.append(", best_bid=").append(best_bid);
-        sb.append(", best_ask=").append(best_ask);
-        sb.append('}');
-        return sb.toString();
     }
 }
